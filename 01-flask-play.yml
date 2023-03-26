@@ -16,7 +16,7 @@
 
   tasks:
   - name: Install virtualenv and python3-venv
-    yum:
+    apt:
       name:
         - virtualenv
         - python3-venv
@@ -32,4 +32,5 @@
       requirements: requirements.txt
 
   - name: Deactivate virtual environment
-    command: deactivate
+    command: deactivate 
+... 

@@ -1,0 +1,15 @@
+---
+- name: Deploy Flask App
+  hosts: web
+  become: yes
+  
+  
+  tasks: 
+    - name: Install virtualenv package
+      apt:
+        name: 
+          - python3
+          - pip
+          - python3-pip
+        state: latest 
+...
