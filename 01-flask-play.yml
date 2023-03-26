@@ -4,7 +4,7 @@
   become: yes
   vars:
     app_name: my_flask_app
-    virtualenv_dir: /opt/{{ app_name }}/venv
+    virtualenv_dir: /opt/{{ my_flask_app}}/venv
 
   tasks:
   - name: Install virtualenv and python3-venv
