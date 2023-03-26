@@ -8,7 +8,7 @@
 
   tasks:
   - name: Install virtualenv and python3-venv
-    apt:
+    yum:
       name:
         - virtualenv
         - python3-venv
