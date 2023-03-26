@@ -14,15 +14,26 @@
         state: present
         update_cache: yes
 
-    - name: Create virtual environment
-      command: python3 -m venv {{ virtualenv_dir }}
+    
+       - name: Create virtual environment for Flask
+  command: virtualenv /opt/flask-env
+
+- name: Create virtual environment
+      command: python3 -m venv {{ virtualenv_dir 
+
+    
+
+- name: Activate virtual environment and install Flask
+  shell: |
+    . /opt/flask-env/bin/activate
+    pip install Flask
 
     - name: Activate virtual environment
       command: source {{ virtualenv_dir }}/bin/activate
       
     - name: Install Flask and other dependencies
       pip:
-      requirements: "{{ app_dir }}/requirements.txt"
+        requirements: "{{ app_dir }}/requirements.txt"
 
     - name: Deactivate virtual environment
       command: deactivate
