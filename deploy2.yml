@@ -5,26 +5,19 @@
   vars:
     app_name: app.py
     virtualenv_dir: /home/ubuntu/Flask-web-App/{{ app.py }}/venv
-
+    
   tasks:
-  - name: Install virtualenv and python3-venv
-    apt:
-      name:
-        - virtualenv
-        - python3-venv
-
-   - name: Create virtual environment
-     command: 
-      - virtualenv /home/ubuntu/virtualenv_dir
-      - source virtualenv_dir/bin/activate
-
-        #- name: Activate virtual environment
-        #command: source virtualenv_dir/bin/activate
-
-  - name: Install Flask and other dependencies
-    pip:
-      requirements: requirements.txt
-
-  - name: Deactivate virtual environment
-    command: deactivate
-...
+    - name: Install virtualenv and python3-venv
+      apt:
+        name:
+          - virtualenv
+          - python3-venv
+    - name: create virtual environment
+      command:
+        - virtualenv /home/ubuntu/virtualenv_dir
+        - source virtualenv_dir/bin/activate
+    - name: Install Flask and other dependencies
+      pip:
+        requirements: requirements.txt
+    - name: Deactivate virtual environment
+      command: deactivate
