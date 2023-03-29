@@ -38,25 +38,40 @@
       git:
         repo: https://github.com/Opas95/Flask-web-App.git
         dest: /opt/myapp
+      become: yes 
+    
+    - name: Generate requirements.txt
+      pip:
+        name: pip-tools
+        executable: /opt/myapp/env/bin/python
+      state: present
       become: yes
 
-
-    - name: Install Flask from requirements.txt
+    - name: Install dependencies using requirements.txt
       pip:
         requirements: /opt/myapp/requirements.txt
         executable: /opt/myapp/env/bin/python
-          #virtualenv: /opt/myapp/env
+        state: present
       become: yes
 
-        #- name: Copy app.py to remote host
-        #copy:
+
+
+    #- name: Install Flask from requirements.txt
+      #pip:
+        #requirements: /opt/myapp/requirements.txt
+        #executable: /opt/myapp/env/bin/python
+        #virtualenv: /opt/myapp/env
+      #become: yes
+
+    #- name: Copy app.py to remote host
+     # copy:
         #src: /opt/myapp/app.py
-          #  dest: /opt/myapp/app.py
-          #owner: myuser
-     #   group: mygroup
-     # mode: 0644
-     #  remote_src: yes
-     #  become: yes
+        #dest: /opt/myapp/app.py
+        #owner: myuser
+        #group: mygroup
+        #mode: 0644
+       # remote_src: yes
+      #  become: yes
   
 
     #- name: Copy Flask app
