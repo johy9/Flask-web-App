@@ -20,6 +20,7 @@
 
     - name: Activate virtual environment
       command: /opt/myapp/env/bin/activate
+      become: yes
 
     - name: Clone Git repository
       git:
