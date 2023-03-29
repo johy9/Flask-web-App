@@ -1,10 +1,6 @@
 - name: Deploy Flask app
   hosts: web  # Replace with the name of your server
   remote_user: root
-<<<<<<< HEAD
-  remote_group: 
-=======
->>>>>>> b63b809b6bc8304a1d30f74b2c6e008c1bfa6ab5
 
   tasks:
     - name: Update apt cache
