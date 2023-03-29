@@ -1,7 +1,6 @@
 - name: Deploy Flask app
   hosts: web  # Replace with the name of your server
   remote_user: root
-  remote_group: root
 
   tasks:
     - name: Install necessary packages
