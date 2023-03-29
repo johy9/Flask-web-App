@@ -31,7 +31,7 @@
       file:
         path: /opt/myapp
         state: absent
-    become: yes
+      become: yes
 
 
     - name: Clone Git repository
