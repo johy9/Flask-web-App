@@ -22,11 +22,8 @@
       become: yes
 
     - name: Activate virtual environment
-      shell: "source /opt/myapp/env/bin/activate"
-      args:
-        executable: /bin/bash
-      become_user: root
-      become_method: su
+      command: python3 -m venv  activate /opt/myapp/env/bin/
+      
       
       
 
