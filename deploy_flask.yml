@@ -22,7 +22,8 @@
       become: yes
 
     - name: Activate virtual environment
-      command: python3 -m venv  activate /opt/myapp/env/bin/
+      command: python3 -m venv  /opt/myapp/env/bin/activate
+      become: yes
       
       
       
