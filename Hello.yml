@@ -50,4 +50,5 @@
     
     - name: Start Flask app
       command: FLASK_APP=/opt/myapp/app.py flask run --host=0.0.0.0
+      
 
