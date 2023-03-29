@@ -44,19 +44,19 @@
     - name: Install Flask from requirements.txt
       pip:
         requirements: /opt/myapp/requirements.txt
-        #executable: /opt/myapp/env/bin/python
-        virtualenv: /opt/myapp/env
+        executable: /opt/myapp/env/bin/python
+          #virtualenv: /opt/myapp/env
       become: yes
 
-    - name: Copy app.py to remote host
-      copy:
-        src: /opt/myapp/app.py
-        dest: /opt/myapp/app.py
-        owner: myuser
-        group: mygroup
-        mode: 0644
-        remote_src: yes
-        become: yes
+        #- name: Copy app.py to remote host
+        #copy:
+        #src: /opt/myapp/app.py
+          #  dest: /opt/myapp/app.py
+          #owner: myuser
+     #   group: mygroup
+     # mode: 0644
+     #  remote_src: yes
+     #  become: yes
   
 
     #- name: Copy Flask app
