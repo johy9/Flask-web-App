@@ -35,6 +35,8 @@
       become: yes
   
     - name: Install flask using pip
+      debug:
+        var: ansible_command
       pip:
         name: flask
         executable: /opt/myapp/env/bin/python
