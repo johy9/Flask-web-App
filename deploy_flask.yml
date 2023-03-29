@@ -19,8 +19,8 @@
       command: python3 -m venv /opt/myapp/env
 
     - name: Activate virtual environment
-      become: yes
       command: /opt/myapp/env/bin/activate
+      become_user: root
       
 
     - name: Clone Git repository
