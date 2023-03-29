@@ -48,11 +48,22 @@
         virtualenv: /opt/myapp/env
       become: yes
 
-    - name: Copy Flask app
+    - name: Copy app.py to remote host
       copy:
         src: /opt/myapp/app.py
-        dest: /opt/myapp/
-      become: yes
+        dest: /opt/myapp/app.py
+        owner: myuser
+        group: mygroup
+        mode: 0644
+        remote_src: yes
+        become: yes
+  
+
+    #- name: Copy Flask app
+     # copy:
+     #   src: /opt/myapp/app.py
+      #  dest: /opt/myapp/
+      #become: yes
 
     - name: Start Flask app
       command: FLASK_APP=/opt/myapp/app.py flask run --host=0.0.0.0
