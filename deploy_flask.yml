@@ -22,8 +22,12 @@
       become: yes
 
     - name: Activate virtual environment
-      command: /opt/myapp/env/bin/activate
-      become: yes
+      shell: "source /opt/myapp/env/bin/activate"
+      args:
+        executable: /bin/bash
+      become_user: root
+      become_method: su
+      
       
 
     - name: Clone Git repository
