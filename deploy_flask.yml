@@ -2,6 +2,8 @@
 - name: Deploy Flask app
   hosts: web  # Replace with the name of your server
   become: yes
+  become_user: root
+  become_group: root
 
   tasks:
     - name: Install necessary packages
@@ -17,10 +19,11 @@
 
     - name: Create virtual environment
       command: python3 -m venv /opt/myapp/env
+      become: yes
 
     - name: Activate virtual environment
       command: /opt/myapp/env/bin/activate
-      become_user: root
+      become: yes
       
 
     - name: Clone Git repository
@@ -32,11 +35,13 @@
       pip:
         requirements: /opt/myapp/requirements.txt
         virtualenv: /opt/myapp/env
+        become: yes
 
     - name: Copy Flask app
       copy:
         src: /opt/myapp/app.py
         dest: /opt/myapp/
+        become: yes
 
     - name: Start Flask app
       command: FLASK_APP=/opt/myapp/app.py flask run --host=0.0.0.0
