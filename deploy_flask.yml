@@ -1,8 +1,8 @@
 ---
 - name: Deploy Flask app
   hosts: web  # Replace with the name of your server
+  become: yes
   remote_user: root
-  remote_group: root
 
   tasks:
     - name: Install necessary packages
@@ -13,17 +13,16 @@
         - python3-pip
         - python3-dev
         - build-essential
-        - python3-venv
         - git
       become: yes
 
-    - name: Create virtual environment
-      command: python3 -m venv /opt/myapp/env
-      become: yes
+        #- name: Create virtual environment
+        #command: python3 -m venv /opt/myapp/env
+        #become: yes
 
-    - name: Activate virtual environment
-      command: /opt/myapp/env/bin/activate
-      become: yes
+        #- name: Activate virtual environment
+        #become: yes
+        #command: /opt/myapp/env/bin/activate
       
 
     - name: Clone Git repository

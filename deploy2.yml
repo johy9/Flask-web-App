@@ -1,5 +1,5 @@
 ---
-- name: Deploy Flask app
+- name: Deploy Flask appi
   hosts: web
   become: yes
   vars:
@@ -12,12 +12,19 @@
         name:
           - virtualenv
           - python3-venv
+
     - name: create virtual environment
-      command:
-        - virtualenv /home/ubuntu/virtualenv_dir
-        - source virtualenv_dir/bin/activate
+      command: virtualenv /home/ubuntu/virtualenv_dir
+
+        #- name: create virtual environment
+        #command: source /home/ubuntu/virtualenv_dir/bin/activate
+
+
     - name: Install Flask and other dependencies
       pip:
-        requirements: requirements.txt
+       name: flask
+       state: present
+
+          
     - name: Deactivate virtual environment
       command: deactivate
