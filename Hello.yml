@@ -38,6 +38,7 @@
       pip:
         name: flask
         executable: /opt/myapp/env/bin/python
+          #state: present
       become: yes
     
     - name: Install dependencies using requirements.txt
