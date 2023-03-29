@@ -38,6 +38,8 @@
       git:
         repo: https://github.com/Opas95/Flask-web-App.git
         dest: /opt/myapp
+      become: yes
+
 
     - name: Install Flask from requirements.txt
       pip:
