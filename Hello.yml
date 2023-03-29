@@ -1,13 +1,14 @@
+---
 - name: Deploy Flask app
-  hosts: web  # Replace with the name of your server
+  hosts: web
   remote_user: root
-
+  
   tasks:
     - name: Update apt cache
       apt:
         update_cache: yes
       become: yes
-
+  
     - name: Install necessary packages
       apt:
         name:
@@ -18,68 +19,35 @@
           - git
         state: present
       become: yes
-
+  
     - name: Create virtual environment
       command: python3 -m venv /opt/myapp/env
       become: yes
-
+  
     - name: Activate virtual environment
       command: /bin/bash -c "source /opt/myapp/env/bin/activate"
       become: yes
-      
-         # - name: Delete existing /opt/myapp directory
-         #file:
-         #path: /opt/myapp
-         #state: absent
-         #become: yes
-
 
     - name: Clone Git repository
       git:
         repo: https://github.com/Opas95/Flask-web-App.git
         dest: /opt/myapp
-      become: yes 
-    
+      become: yes
+  
     - name: Generate requirements.txt
       pip:
         name: pip-tools
         executable: /opt/myapp/env/bin/python
       state: present
       become: yes
-
+    
     - name: Install dependencies using requirements.txt
       pip:
         requirements: /opt/myapp/requirements.txt
         executable: /opt/myapp/env/bin/python
         state: present
       become: yes
-
-
-
-    #- name: Install Flask from requirements.txt
-      #pip:
-        #requirements: /opt/myapp/requirements.txt
-        #executable: /opt/myapp/env/bin/python
-        #virtualenv: /opt/myapp/env
-      #become: yes
-
-    #- name: Copy app.py to remote host
-     # copy:
-        #src: /opt/myapp/app.py
-        #dest: /opt/myapp/app.py
-        #owner: myuser
-        #group: mygroup
-        #mode: 0644
-       # remote_src: yes
-      #  become: yes
-  
-
-    #- name: Copy Flask app
-     # copy:
-     #   src: /opt/myapp/app.py
-      #  dest: /opt/myapp/
-      #become: yes
-
+    
     - name: Start Flask app
       command: FLASK_APP=/opt/myapp/app.py flask run --host=0.0.0.0
 
