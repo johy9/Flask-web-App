@@ -21,8 +21,6 @@
 
     - name: Create virtual environment
       command: python3 -m venv /opt/myapp/env
-      args:
-        chdir: /opt/myapp
       become: yes
 
     - name: Activate virtual environment
