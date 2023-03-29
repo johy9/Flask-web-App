@@ -34,21 +34,18 @@
         dest: /opt/myapp
       become: yes
   
-    - name: Generate requirements.txt
+    - name: Install flask using pip
       pip:
-        name: pip-tools
+        name: flask
         executable: /opt/myapp/env/bin/python
-      state: present
       become: yes
     
     - name: Install dependencies using requirements.txt
       pip:
         requirements: /opt/myapp/requirements.txt
         executable: /opt/myapp/env/bin/python
-        state: present
       become: yes
     
     - name: Start Flask app
       command: FLASK_APP=/opt/myapp/app.py flask run --host=0.0.0.0
-      
 
