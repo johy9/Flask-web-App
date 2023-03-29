@@ -44,7 +44,8 @@
     - name: Install Flask from requirements.txt
       pip:
         requirements: /opt/myapp/requirements.txt
-        virtualenv: /opt/myapp/env
+        executable: /opt/myapp/env/bin/python
+        #virtualenv: /opt/myapp/env
       become: yes
 
     - name: Copy Flask app
