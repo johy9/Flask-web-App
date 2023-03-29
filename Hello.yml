@@ -1,9 +1,14 @@
 - name: Deploy Flask app
   hosts: web  # Replace with the name of your server
   remote_user: root
-  remote_group: root
+  remote_group: 
 
   tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+      become: yes
+
     - name: Install necessary packages
       apt:
         name:
