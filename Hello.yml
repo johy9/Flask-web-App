@@ -33,7 +33,11 @@
         repo: https://github.com/Opas95/Flask-web-App.git
         dest: /opt/myapp
       become: yes
-
+      
+    - name: Install dependencies using requirements.txt
+      pip:
+        requirements: /opt/myapp/requirements.txt
+        executable: /opt/myapp/env/bin/pip
   
     - name: Install flask using pip
       #var: ansible_command
@@ -42,13 +46,6 @@
         executable: /opt/myapp/env/bin/pip
           #state: present
       become: yes
-    
-    - name: Install dependencies using requirements.txt
-      pip:
-        requirements: /opt/myapp/requirements.txt
-        executable: /opt/myapp/env/bin/pip
-      become: yes
-
 
     - name: Allow incoming traffic on port 5000
       ufw:
@@ -70,9 +67,3 @@
       command: /bin/bash -c "source /opt/myapp/env/bin/activate && export FLASK_APP=/opt/myapp/app.py && /opt/myapp/env/bin/flask run --host=0.0.0.0 &"
       async: 0
       poll: 0
-
-  
-    
-    
-
- 
