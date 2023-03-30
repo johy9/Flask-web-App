@@ -33,22 +33,26 @@
         repo: https://github.com/Opas95/Flask-web-App.git
         dest: /opt/myapp
       become: yes
+
   
     - name: Install flask using pip
-      debug:
-        var: ansible_command
+      #var: ansible_command
       pip:
         name: flask
-        executable: /opt/myapp/env/bin/python
+        executable: /opt/myapp/env/bin/pip
           #state: present
       become: yes
     
     - name: Install dependencies using requirements.txt
       pip:
         requirements: /opt/myapp/requirements.txt
-        executable: /opt/myapp/env/bin/python
+        executable: /opt/myapp/env/bin/pip
       become: yes
     
     - name: Start Flask app
-      command: FLASK_APP=/opt/myapp/app.py flask run --host=0.0.0.0
+      shell: "{{ '/opt/myapp/env/bin/flask run --host=0.0.0.0 &' }}"
+      environment: 
+        FLASK_APP:  /opt/myapp/app.py
+      async: 0
+      poll: 0
 
