@@ -57,6 +57,12 @@
         port: 5000
         comment: "Allow incoming traffic to Flask app"
       become: yes
+
+    - name: Restart UFW
+      systemd:
+        name: ufw
+        state: restarted
+  
     
     - name: Start Flask app
       shell: "{{ '/opt/myapp/env/bin/flask run --host=0.0.0.0 &' }}"
