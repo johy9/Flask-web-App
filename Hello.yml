@@ -62,6 +62,8 @@
       systemd:
         name: ufw
         state: restarted
+      become: yes
+        
 
     - name: Start Flask app
       become: true
