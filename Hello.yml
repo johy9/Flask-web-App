@@ -50,7 +50,7 @@
       become: yes
 
 
-   - name: Allow incoming traffic on port 5000
+    - name: Allow incoming traffic on port 5000
       ufw:
         rule: allow
         proto: tcp
