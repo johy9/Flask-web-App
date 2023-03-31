@@ -1,21 +1,8 @@
-import unittest
-from flask import Flask, url_for
-from flask_testing import TestCase
+import requests
 
-from app import app
+def test_integration():
+    url = 'http://localhost:5000/'
+    response = requests.get(url)
+    assert response.status_code == 200
+    assert 'Hello, World!' in response.text
 
-
-class TestApp(TestCase):
-
-    def create_app(self):
-        app.config['TESTING'] = True
-        return app
-
-    def test_homepage(self):
-        response = self.client.get(url_for('hello'))
-        self.assert200(response)
-        self.assertIn(b'Devops Engineer', response.data)
-
-
-if __name__ == '__main__':
-    unittest.main()
